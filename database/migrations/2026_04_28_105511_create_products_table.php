@@ -15,11 +15,11 @@ return new class extends Migration
             $table->id();
             $table->foreignId('product_category_id')->constrained('products_categories');
             $table->string('name');
-            $table->string('slug')->unique();
+            $table->string('slug');
             $table->text('description');
             $table->decimal('price', 15, 2);
             $table->integer('stock');
-            $table->string('status'); // draft, published
+            $table->string('status');
             $table->string('featured_image')->nullable();
             $table->timestamps();
         });

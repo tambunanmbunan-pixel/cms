@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('posts', function (Blueprint $table) {
+        Schema::create('post', function (Blueprint $table) {
             $table->id();
             $table->foreignId('author_id')->constrained('users');
             $table->foreignId('blog_category_id')->constrained('blogs_categories');
             $table->string('title');
-            $table->string('slug')->unique();
+            $table->string('slug');
             $table->text('content');
             $table->string('image')->nullable();
             $table->string('status');
