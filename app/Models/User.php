@@ -14,6 +14,7 @@ class User extends Authenticatable
 
     /**
      * The attributes that are mass assignable.
+     * * PERBAIKAN: Kolom 'role' sudah dibuang, dan 'username' diganti ke 'name' agar klop dengan database.
      *
      * @var array<int, string>
      */
@@ -40,5 +41,6 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'last_login_at'     => 'datetime', // Opsional: Ditambahkan karena ada di kolom migration kamu
     ];
 }

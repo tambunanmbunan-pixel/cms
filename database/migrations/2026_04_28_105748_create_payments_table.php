@@ -11,12 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('payments', function (Blueprint $table) {
+       Schema::create('payments', function (Blueprint $table) {
             $table->id();
             $table->foreignId('order_id')->constrained('orders')->onDelete('cascade');
-            $table->string('payment_method');
-            $table->string('payment_status');
-            $table->string('transaction_id')->nullable();
+            $table->string('payment_method'); // e.g., Midtrans, Xendit, Manual
+            $table->string('payment_channel')->nullable(); // e.g., GoPay, Mandiri VA, Alfamart
+            $table->decimal('amount', 12, 2); // Nominal transaksi (Mendukung angka besar)
+            $table->string('payment_status', 30)->default('pending'); // pending, settlement, deny, expire
+            $table->string('transaction_id')->unique()->nullable(); // ID Transaksi resmi dari Midtrans/Xendit
+            $table->text('raw_response')->nullable(); // Jaring pengaman penyimpan JSON Webhook
             $table->timestamp('paid_at')->nullable();
             $table->timestamps();
         });
