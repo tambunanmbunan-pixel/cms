@@ -12,6 +12,7 @@ class VerifyCsrfToken extends Middleware
      * @var array<int, string>
      */
     protected $except = [
-        //
+        '/payment/xendit-commerce',
+        '/payment/xendit-callback', // <-- Tambahkan baris ini
     ];
 }

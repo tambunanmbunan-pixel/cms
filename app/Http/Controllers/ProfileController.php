@@ -21,6 +21,22 @@ class ProfileController extends Controller
         ]);
     }
 
+
+public function index()
+{
+    $customer = auth('customer')->user();
+    
+    // Pastikan data ini diambil
+    $orders = \App\Models\Order::where('customer_id', $customer->id)
+                ->latest()
+                ->get();
+                
+    $addresses = $customer->addresses;
+
+    // Pastikan $orders ada di sini
+    return view('front.profile.index', compact('customer', 'addresses', 'orders'));
+}
+
     /**
      * Update the user's profile information.
      */
